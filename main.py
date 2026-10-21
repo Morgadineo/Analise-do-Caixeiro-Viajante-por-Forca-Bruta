@@ -2,6 +2,7 @@ import itertools
 import random
 import numpy as np
 import math
+import time
 
 def caixeiro_viajante_forca_bruta(matriz_distancias, cidade_inicial=0):
     num_cidades = len(matriz_distancias)
@@ -13,6 +14,7 @@ def caixeiro_viajante_forca_bruta(matriz_distancias, cidade_inicial=0):
     quantidade_rotas = 0
 
     print(f"-- INICIANDO ANALISE --")
+    inicio = time.time()
     for permutacao in rotas:
         quantidade_rotas += 1
         rota_atual = [cidade_inicial] + list(permutacao) + [cidade_inicial]
@@ -28,7 +30,9 @@ def caixeiro_viajante_forca_bruta(matriz_distancias, cidade_inicial=0):
             menor_distancia = distancia_atual
             melhor_rota = rota_atual
 
+    fim = time.time()
     print(f"{quantidade_rotas} rotas analizadas...")
+    print(f"{fim - inicio:.4f} segundos")
     return melhor_rota, menor_distancia
 
 def gerar_matriz_cidades(n):
